@@ -5,7 +5,13 @@ whole_article = requests.get(url = 'https://newsapi.org/v2/top-headlines?country
 
 whole_article_json = whole_article.json()
 
-headline = whole_article_json["articles"][0]["title"]
+#real code
+
+#headline = whole_article_json["articles"][0]["title"]
+
+#for now code 
+
+headline = "Boris Johnson says tens of thousands could be sent to Rwanda under relocation plan for asylum seekers – UK politics live - The Guardian"
 
 scrambled_string = ""
 
@@ -16,6 +22,10 @@ def wordmixer(word):
     charlst = list(word) 
     random.shuffle(charlst)
     new_word = ''.join(charlst)
+    return dash_eradicator(new_word)
+
+def dash_eradicator(word):
+    new_word = word
     new_word += ' '
     for letter in word:
         if not letter.isalnum():
@@ -25,23 +35,23 @@ def wordmixer(word):
 
 def sentencescrambler(headline_argument):
     scrambled_sentence = ""
-    #Line 29 creates both the headline and the scrambled sentence
-    #without dashes and apostrophes in there  
-    alnum_headline = misc_eradicator(headline_argument.split()) 
-    for word in alnum_headline:
+    alnum_headline = ""
+    for word in headline_argument.split():
         scrambled_sentence += wordmixer(word)
-    return scrambled_sentence, " ".join(alnum_headline)
+        alnum_headline += dash_eradicator(word)
+    return scrambled_sentence, alnum_headline
 
 
-def misc_eradicator(test_sentence):
+
+
+""" def misc_eradicator(test_sentence):
 
     for i in range(len(test_sentence)):
         test_sentence[i] = test_sentence[i].replace("-", " ").replace("'", "")
-    
+    print(f"are there dashes and such in here? {test_sentence}")
     return test_sentence
-
-scrambled_sentence = (sentencescrambler(headline))[0]
-final_headline = (sentencescrambler(headline))[1]
+ """
+(scrambled_sentence, final_headline) = sentencescrambler(headline)
 
 print("\nThis is headline")
 print(final_headline)
@@ -51,3 +61,27 @@ print(final_headline)
 print("\nThis is scrambled sentence")
 print(scrambled_sentence)
 
+player_guess = "says"
+
+""" if player_guess in final_headline.split():
+    guess_position = final_headline.split().index(player_guess)
+    test_ssentence = scrambled_sentence.split()
+    test_ssentence[guess_position] = player_guess
+    print(test_ssentence)
+    #scrambled_sentence[guess_position] = player_guess """
+
+#print(scrambled_sentence)
+
+def word_replacer(current_sentence, headline, player_guess):
+    if player_guess in headline.split():
+        guess_position = headline.split().index(player_guess)
+        updated_position = current_sentence.split()
+        updated_position[guess_position] = player_guess
+        print(updated_position)
+        return " ".join(updated_position)
+
+#test 
+
+scrambled_sentence = word_replacer(scrambled_sentence, headline, player_guess)
+
+print(f"This is the scrambled sentence: {scrambled_sentence}")

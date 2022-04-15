@@ -11,33 +11,18 @@ app = Flask(__name__)
 api = Api(app)
 
 def wordmixer(word):
-    new_word = ""
     charlst = list(word) 
     random.shuffle(charlst)
     new_word = ''.join(charlst)
     new_word += ' '
-    for letter in word:
-        if not letter.isalnum():
-            new_word = new_word.replace(letter, " ")
     return new_word
 
 
 def sentencescrambler(headline_argument):
     scrambled_sentence = ""
-    #Line 29 creates both the headline and the scrambled sentence
-    #without dashes and apostrophes in there  
-    alnum_headline = misc_eradicator(headline_argument.split()) 
-    for word in alnum_headline:
+    for word in headline_argument.split():
         scrambled_sentence += wordmixer(word)
-    return scrambled_sentence, " ".join(alnum_headline)
-
-
-def misc_eradicator(test_sentence):
-
-    for i in range(len(test_sentence)):
-        test_sentence[i] = test_sentence[i].replace("-", " ").replace("'", "")
-    
-    return test_sentence
+    return scrambled_sentence 
 
 class Game_info(Resource):
     def get(self):
@@ -48,10 +33,10 @@ class Game_info(Resource):
 
         headline = whole_article_json["articles"][0]["title"]
 
-        scrambled_sentence = (sentencescrambler(headline))[0]
+        scrambled_sentence = sentencescrambler(headline)
 
         data = {'scrambled_headline': scrambled_sentence, "headline": headline}
-        return {'data': data}, 200
+        return data, 200, {'Access-Control-Allow-Origin': 'http://localhost:8000'}
     
     pass
 

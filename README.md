@@ -1,1 +1,1 @@
-# newdle-backend
+The backend of Newdle, an API, created with Flask, which calls the news API and edits the data for usage by my frontend.

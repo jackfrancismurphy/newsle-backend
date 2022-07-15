@@ -35,12 +35,23 @@ class Game_info(Resource):
 
         scrambled_sentence = sentencescrambler(headline)
 
+        print(headline)
+        print(scrambled_sentence)
+
         data = {'scrambled_headline': scrambled_sentence, "headline": headline}
         return data, 200, {'Access-Control-Allow-Origin': 'http://localhost:8000'}
     
+
     pass
 
 api.add_resource(Game_info,'/Game_info')
 
 if __name__ == '__main__':
     app.run()
+
+""" Comprehension:
+I cannot access either 'scrambled_sentence' or 'headline', I have tried testing
+print statements on line 43/44 within the get() body. When I ran the file I simply
+run the API, nothing is printed. I do not know how to test this file.
+I have written out the test in the headline_tests.py file. They will be included here
+"""

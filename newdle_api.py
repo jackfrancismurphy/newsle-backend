@@ -54,4 +54,4 @@ class Game_info(Resource):
 api.add_resource(Game_info,'/Game_info')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")

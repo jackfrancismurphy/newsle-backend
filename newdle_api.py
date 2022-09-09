@@ -1,8 +1,13 @@
+#python dependencies
+import sys
+import random
+
+#third party dependencies
 from flask import Flask 
 from flask_restful import Resource, Api
-import random
 import pandas as pd
 import requests
+
 #getting the headline
 
 #Creating the API and defining functions
@@ -31,7 +36,13 @@ class Game_info(Resource):
 
         whole_article_json = whole_article.json()
 
-        headline = whole_article_json["articles"][0]["title"]
+        if len(sys.argv) > 1:
+             headline = sys.argv[1]
+        
+        else:
+            headline = whole_article_json["articles"][0]["title"]
+        
+       
 
         scrambled_sentence = sentencescrambler(headline)
 
@@ -48,10 +59,3 @@ api.add_resource(Game_info,'/Game_info')
 
 if __name__ == '__main__':
     app.run()
-
-""" Comprehension:
-I cannot access either 'scrambled_sentence' or 'headline', I have tried testing
-print statements on line 43/44 within the get() body. When I ran the file I simply
-run the API, nothing is printed. I do not know how to test this file.
-I have written out the test in the headline_tests.py file. They will be included here
-"""

@@ -32,17 +32,17 @@ def wordmixer(word):
 class Game_info(Resource):
     def get(self):
 
-        whole_article = requests.get(url = 'https://newsapi.org/v2/top-headlines?country=gb&apiKey=e1d14d936ae24aa5b9a99e8ab7bed6e9')
-
-        whole_article_json = whole_article.json()
+        JSON_object = requests.get(('https://content.guardianapis.com/search?api-key=5ae53b78-a100-42ea-9d0c-262ed4d181bc'))
 
         if len(sys.argv) > 1:
              headline = sys.argv[1]
         
         else:
-            headline = whole_article_json["articles"][0]["title"]
+            #Randomising headlines as this is now from one website;
+            #A website which my friends commonly read.
+            headline_list = [x["webTitle"] for x in JSON_object.json()['response']['results']]
         
-       
+            headline = headline_list[random.randint(0, len(headline_list))]
 
         scrambled_sentence = sentencescrambler(headline)
 

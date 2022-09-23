@@ -46,12 +46,11 @@ class Game_info(Resource):
         scrambled_sentence = sentencescrambler(headline)
 
         data = {'scrambled_headline': scrambled_sentence, "headline": headline}
-        return data, 200, {'Access-Control-Allow-Origin': 'https://newsle.co.uk'}
-
+        return data, 200, {'Access-Control-Allow-Origin':'http://localhost:8000'}
+    
     pass
 
 api.add_resource(Game_info,'/Game_info')
 
 if __name__ == '__main__':
-    context = ("../certs/newsle_co_uk.crt", "../certs/newsle.co.uk.key")
-    app.run(host="0.0.0.0", ssl_context=context)
+    app.run()

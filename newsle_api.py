@@ -5,7 +5,6 @@ import random
 #third party dependencies
 from flask import Flask 
 from flask_restful import Resource, Api
-import pandas as pd
 import requests
 
 #getting the headline
@@ -32,7 +31,7 @@ def wordmixer(word):
 class Game_info(Resource):
     def get(self):
 
-        JSON_object = requests.get(('https://content.guardianapis.com/search?api-key=5ae53b78-a100-42ea-9d0c-262ed4d181bc'))
+        JSON_object = requests.get('https://content.guardianapis.com/search?api-key=5ae53b78-a100-42ea-9d0c-262ed4d181bc')
 
         if len(sys.argv) > 1:
              headline = sys.argv[1]
@@ -47,7 +46,7 @@ class Game_info(Resource):
         scrambled_sentence = sentencescrambler(headline)
 
         data = {'scrambled_headline': scrambled_sentence, "headline": headline}
-        return data, 200, {'Access-Control-Allow-Origin': 'http://localhost:8000'}
+        return data, 200, {'Access-Control-Allow-Origin':'http://localhost:8000'}
     
     pass
 

@@ -51,7 +51,3 @@ class Game_info(Resource):
     pass
 
 api.add_resource(Game_info,'/Game_info')
-
-if __name__ == '__main__':
-    context = ("../certs/newsle_co_uk.crt", "../certs/newsle.co.uk.key")
-    app.run(host="0.0.0.0", ssl_context=context)

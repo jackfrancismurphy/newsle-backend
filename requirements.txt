@@ -2,3 +2,4 @@ flask
 flask_restful
 pandas
 requests
+gunicorn==20.1.0

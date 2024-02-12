@@ -33,15 +33,11 @@ class Game_info(Resource):
 
         JSON_object = requests.get('https://content.guardianapis.com/search?api-key=5ae53b78-a100-42ea-9d0c-262ed4d181bc')
 
-        if len(sys.argv) > 1:
-             headline = sys.argv[1]
-        
-        else:
-            #Randomising headlines as this is now from one website;
-            #A website which my friends commonly read.
-            headline_list = [x["webTitle"] for x in JSON_object.json()['response']['results']]
-        
-            headline = headline_list[random.randint(0, len(headline_list))]
+        #Randomising headlines as this is now from one website;
+        #A website which my friends commonly read.
+        headline_list = [x["webTitle"] for x in JSON_object.json()['response']['results']]
+    
+        headline = headline_list[random.randint(0, len(headline_list))]
 
         scrambled_sentence = sentencescrambler(headline)
 

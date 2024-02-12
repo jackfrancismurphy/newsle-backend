@@ -51,6 +51,3 @@ class Game_info(Resource):
     pass
 
 api.add_resource(Game_info,'/Game_info')
-
-if __name__ == '__main__':
-    app.run()

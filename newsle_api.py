@@ -42,7 +42,7 @@ class Game_info(Resource):
         scrambled_sentence = sentencescrambler(headline)
 
         data = {'scrambled_headline': scrambled_sentence, "headline": headline}
-        return data, 200, {'Access-Control-Allow-Origin':'https://jackfrancismurphy.github.io/newsle-frontend'}
+        return data, 200, {'Access-Control-Allow-Origin':'*'}
     
     pass
 

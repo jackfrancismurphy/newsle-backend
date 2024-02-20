@@ -16,6 +16,9 @@ api = Api(app)
 
 def sentencescrambler(headline_argument):
     scrambled_sentence = ""
+
+    headline_argument.replace('‘', "'").replace('’', "'").replace('“',"\"").replace('”',"\"")
+
     for word in headline_argument.split():
         scrambled_sentence += wordmixer(word)
     return scrambled_sentence 

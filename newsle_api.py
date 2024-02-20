@@ -24,8 +24,7 @@ def sentencescrambler(headline_argument):
     return scrambled_sentence 
 
 def wordmixer(word):
-    charlst = list(word)
-    charlst.replace('‘', "'").replace('’', "'").replace('“',"\"").replace('”',"\"")   
+    charlst = list(word) 
     random.shuffle(charlst)
     new_word = ''.join(charlst)
     new_word += ' '
